@@ -3,4 +3,5 @@
 ```
 yarn
 ./scripts/build.sh
+./scripts/update-gh-pages.sh
 ```

@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <title>Bloom Horticulture — Professional, commercial and domestic gardener</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
         <style>
             :root {
                 --font-size: 16px;
@@ -26,9 +25,14 @@
             html {
                 font-size: var(--font-size);
                 line-height: var(--line-height);
-                font-family: 'Quicksand', sans-serif;
+                font-family: sans-serif;
                 -webkit-font-smoothing: antialiased;
             }
+
+            html.fonts-loaded {
+                font-family: 'Quicksand', sans-serif;
+            }
+
             body {
                 margin: unset;
                 color: hsl(39, 34%, 23%);
@@ -297,5 +301,20 @@
                 </div>
             </div>
         </footer>
+        <script src="./cssrelpreload.js"></script>
+        <script src="./loadCSS.js"></script>
+        <script src="./fontfaceobserver.js"></script>
+        <script>
+            loadCSS('https://fonts.googleapis.com/css?family=Quicksand:400,700')
+
+            const font = new FontFaceObserver('Quicksand');
+            const fontBold = new FontFaceObserver('Quicksand', { weight: 700 })
+
+            Promise.all([
+                font.load(),
+                fontBold.load(),
+            ])
+                .then(() => document.documentElement.classList.add('fonts-loaded'))
+        </script>
     </body>
 </html>
